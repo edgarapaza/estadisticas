@@ -1,22 +1,66 @@
 <?php
+date_default_timezone_set('America/Los_Angeles');
 
 class Conexion
 {
-	public function Conectar()
+	private $conn;
+
+	function __construct()
 	{
 		$host = "localhost";
 		$user = "root";
 		$pass = "";
-		$db   = "informatica";
+		$db   = "estadistica";
 
-		$mysqli = new mysqli($host, $user, $pass, $db);
-		$mysqli->set_charset("utf8");
-		if ($mysqli->connect_errno) {
-			echo "Error al contenctar a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+		$this->conn = new mysqli($host, $user, $pass, $db);
+		
+		if ($this->conn->connect_errno) {
+			echo "Error al contenctar a MySQL: (" . $this->conn->connect_errno . ") " . $mysqli->connect_error;
 			exit();
 		}
 
-		#echo $mysqli->host_info. " Test en Conection.php";
-		return $mysqli;
+		#echo $this->conn->host_info. " Test en Conection.php";
+		return $this->conn;
+	}
+
+	
+	function ConsultaConRetorno($sql)
+	{ #SELECT
+		if(!$result = $this->conn->query($sql))
+		{
+			echo "Error: ".mysqli_error($this->conn);
+			return false;
+			exit();
+		}
+
+		return $result;
+		mysqli_close($this->conn);
+	}
+
+	function ConsultaSinRetorno($sql)
+	{ #INSERT, UPDATE, DELETE
+		if(!$this->conn->query($sql))
+		{
+			echo "Error: ".mysqli_error($this->conn);
+			return false;
+			exit();
+		}
+
+		return true;
+		mysqli_close($this->conn);
+	}
+
+	function ConsultaArray($sql)
+	{  #SELECT 
+		if(!$result = $this->conn->query($sql))
+		{
+			echo "Error: ".mysqli_error($this->conn);
+			return false;
+			exit();
+		}
+		$res = $result->fetch_array(MYSQLI_ASSOC);
+		return $res;
+		mysqli_close($this->conn);
 	}
 }
+
