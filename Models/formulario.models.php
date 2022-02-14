@@ -20,10 +20,10 @@ class Producto
         return $this->conn;
     }
       
-    function Registrar($recepcion,$soli,$nombre,$notario,$tipodoc,$emision,$observacion)
+    function Registrar($recepcion,$soli,$nombre,$notario,$tipodoc,$emision,$observacion,$estado)
     {
-            $sql = "INSERT INTO solicitudes(fecharecepcion,numsoli,nombre,notario,tipodoc,fechaatendida,observacion) VALUES
-             ('$recepcion','$soli','$nombre','$notario','$tipodoc','$emision','$observacion')";
+            $sql = "INSERT INTO solicitudes(fecharecepcion,numsoli,nombre,notario,tipodoc,fechaatendida,observacion,estado) VALUES
+             ('$recepcion','$soli','$nombre','$notario','$tipodoc','$emision','$observacion','$estado')";
             
             
             $result = $this->conn->ConsultaSinRetorno($sql);
@@ -31,9 +31,9 @@ class Producto
             mysqli_close($this->conn);
     }
 
-    function Edit($idsol, $fecharecepcion,$soli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion)
+    function Edit($idsol, $fecharecepcion,$soli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion,$estado)
     {
-            $sql = "UPDATE solicitudes SET fecharecepcion = '$fecharecepcion', numsoli = '$soli', nombre = '$nombre', notario = '$notario', tipodoc = '$tipodoc', fechaatendida = '$fechaatendida', observacion = '$observacion' WHERE idsol = ". $idsol;
+            $sql = "UPDATE solicitudes SET fecharecepcion = '$fecharecepcion', numsoli = '$soli', nombre = '$nombre', notario = '$notario', tipodoc = '$tipodoc', fechaatendida = '$fechaatendida', observacion = '$observacion', estado='$estado' WHERE idsol = ". $idsol;
             
             $result = $this->conn->ConsultaSinRetorno($sql);
             return $result;

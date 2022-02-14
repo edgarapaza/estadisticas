@@ -1,7 +1,6 @@
 <?php
-date_default_timezone_set('America/Los_Angeles');
 
-class Conexion
+class Conexion2
 {
 	private $conn;
 
@@ -10,7 +9,7 @@ class Conexion
 		$host = "192.168.0.73";
 		$user = "usuario";
 		$pass = "archivo123$";
-		$db   = "estadistica";
+		$db   = "recepcion";
 
 		$this->conn = new mysqli($host, $user, $pass, $db);
 		

@@ -7,7 +7,8 @@ $registro = new Producto();
 
 $recepcion 		= $_POST['fecharecepcion'];
 $soli			= $_POST['numsoli'];
-$nombre 		= $_POST['nombre'];
+$estado			= $_POST['estado'];
+$nombre 		= $_POST['txtnombre'];
 $notario 		= $_POST['notario'];
 $tipodoc		 = $_POST['tipodoc'];
 $emision 		= $_POST['fechaatendida'];
@@ -15,7 +16,7 @@ $observacion 	= $_POST['observacion'];
 
 
  //llamar a la funcion Registrar
-$respuesta = $registro->Registrar($recepcion,$soli,$nombre,$notario,$tipodoc,$emision,$observacion);
+$respuesta = $registro->Registrar($recepcion,$soli,$nombre,$notario,$tipodoc,$emision,$observacion,$estado);
 
 if($respuesta == true)
 	header("Location: ../View/principal.php?msg=Guardado Correctamente");
