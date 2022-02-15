@@ -78,6 +78,7 @@ require 'header.php';
                     <option value="C.C. Defuncion"> C.C. Defuncion</option>
                     <option value="Constancia por Escritura"> Constancia por Escritura</option>
                     <option value="Constancia por Partida">Constancia por Partida</option>
+                    <option value="Devuelto">Devuelto</option>
               </select>
           </div>
 
