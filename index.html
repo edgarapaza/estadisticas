@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="View/css/login.css">
+    <link rel="stylesheet" href="View/css/cabecera.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+</head>
+   
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy"> You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+  <div class="container">
+     
+    <div class="row">
+      <div class="col-md">
+        <br>
+        <img src="View/img/archivo.jpg" width="150" height="150">
+            
+       
+          <form method="post" action="./Controllers/validacion.php">
+              
+            <h1 class="animate__animated animate__backInLeft">Archivo Intermedio</h1>
+            <h1 class="animate__animated animate__backInLeft">Registro de Solicitudes Notariales y Judiciales</h1>
+            <p>Usuario <input type="text" placeholder="ingrese su usuario" name="user"></p>
+            <p>Contraseña <input type="password" placeholder="ingrese su contraseña" name="passwd"></p>
+
+            <input type="submit" value="Ingresar">
+
+          </form>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
