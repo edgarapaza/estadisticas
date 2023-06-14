@@ -14,7 +14,7 @@
       <div class="top-bar-left">
         <ul class="menu">
           <li class="menu-text">ESTADISTICAS - INTERMEDIO</li>
-          
+          <li><a href="formulario.php">Inicio</a></li>
           <li><a href="principal.php">Modificar</a></li>
           <li><a href="formRebusqueda.php">Rebusqueda</a></li>
           <li><a href="consulta1.php">Reporte</a></li>

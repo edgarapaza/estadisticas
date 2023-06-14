@@ -9,7 +9,7 @@ if(is_null($numsolicitud))
 {
   $datUsuario = $search2->SearchUsuarioRecepcion(1);
 }else{
-  echo "Lleno" . $numsolicitud;
+  #echo "Lleno" . $numsolicitud;
   $datUsuario = $search2->SearchUsuarioRecepcion($numsolicitud);
 }
 
@@ -72,28 +72,37 @@ $fecha = date('Y-m-d');
                   <input class="form-control" type="text" name="txtdni" value="<?php echo $datUsuario['numDoc'];?>" required>
           </label>
 
-          <label>Estado</label>
-          <select name="estado" class="form-control">
-                      <option value="Atendido">Atendido</option>
-                      <option value="No Atendido">No Atendido</option>
-                      <option value="Pendiente">Devuelto</option>
-                    </select>
+          
         </div>
 
         <div class="medium-4 cell">
-            <label>Fecha de Recepcion:
-                <input class="form-control" type="date" name="fecharecepcion" required>
+            <label>Fecha de Recepcion:fecCreacion
+                <input class="form-control" type="date" name="fecharecepcion" value="<?php echo $fecha; ?>" required>
             </label>
+
+            
+        </div>
+
+        
+
+        <div class="medium-4 cell">
+          <label>Estado
+            <select name="estado" class="form-control">
+                        <option value="Atendido">Atendido</option>
+                        <option value="No Atendido">No Atendido</option>
+                        <option value="Pendiente">Devuelto</option>
+            </select>
+          </label>
 
             <label>Fecha de Atencion
-              <input class="form-control" type="date" name="fechaatendida" value="" required>
+              <input class="form-control" type="date" name="fechaatendida" value="<?php echo $fecha; ?>" required>
             </label>
+
+            <div class="medium-4 cell">
+              <button type="submit" class="button large">Guardar Informacion</button>
+            </div>
         </div>
 
-        <div class="medium-4 cell">
-          <button type="submit" class="button large">Registrar</button>
-        </div>
-        
       
     </div>
   </div>
