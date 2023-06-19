@@ -1,8 +1,7 @@
 <?php
-
 require 'Conexion2.php';
 
-class Search2
+class Search
 {    
     private $conn;
 
@@ -12,18 +11,32 @@ class Search2
         return $this->conn;
     }
         
-    function SearchUsuarioRecepcion($idsolicitud)
+    function DatosEscritura($idSol)
     {
-        $sql1 = "SELECT s.codTipSol,s.codUsu FROM recepcion.solicitudes as s WHERE s.codSol = " .$idsolicitud;
+        $sql = "SELECT codSol, codUsu, codTipSol, idSol, fecCreacion FROM recepcion.solicitudes WHERE codSol =" .$idSol;
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
+    }
 
-        $datSolicitud = $this->conn->ConsultaArray($sql1);
-    	
-    	#$datSolicitud['codTipSol']."<br>";
-    	#$datSolicitud['codUsu']."<br>";
-    	
-        $sql2 = "SELECT concat(nombre,' ',apePat,' ',apeMat) as nom_usuario, numDoc FROM recepcion.usuarios WHERE codUsu = " . $datSolicitud['codUsu'];
-        $datUsuario = $this->conn->ConsultaArray($sql2);
+    function DatosUsuario($codUsuario)
+    {
+        $sql = "SELECT codUsu, CONCAT(nombre,' ',apePat,' ',apeMat) as persona, numDoc, telefono FROM recepcion.usuarios WHERE codUsu = ".$codUsuario;
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
+    }
 
-        return $datUsuario;
+    function DatosTipoEscritura($idSol)
+    {
+        $sql = "SELECT idSol, tipEsc,codNot FROM recepcion.escpublicas WHERE idSol = ". $idSol;
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
+    }
+
+    
+    function DatosNotario($codNotario)
+    {
+        $sql = "SELECT cod_not, CONCAT(nom_not,' ',pat_not,' ',mat_not) as notario, provincia FROM recepcion.notarios WHERE cod_not = ". $codNotario;
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
     }
  }

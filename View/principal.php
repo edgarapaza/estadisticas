@@ -2,27 +2,41 @@
 require 'header.php';
 require_once '../Models/principal.models.php';
 
-$lista = new Modificacion(); // Instancia a la Clase
-$data = $lista->Listar();
+$principal = new Principal(); // Instancia a la Clase
+$data = $principal->Listar();
 ?>
 
-<html>
-<body style="margin: 0px; background: #008080; height: 100%">
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <center> <img src="img/fpatrias.jpg"></center>
-            <center><h6>   LISTA DE SOLICITUDES DE USUARIOS ATENDIDOS</h6> </center>
+    <div class="grid-x grid-margin-x">
+        <div class="cell medium-12">
+            <h2>LISTA DE SOLICITUDES DE USUARIOS ATENDIDOS</h2>
+        </div>
+        <div class="cell medium-1">
+            Buscar por Fechas
+        </div>
+        <div class="cell medium-4">
+            <label for="">Fecha Inicial
+                <input type="date" name="fechaInicio" class="form-control">
+            </label>
+        </div>
+        <div class="cell medium-4">
+            <label for="">Fecha Final
+                <input type="date" name="fechaInicio" class="form-control">
+            </label>
+        </div>
+        <div class="cell medium-2">
+            <button type="submit" name="btnBuscar" class="button">Buscar</button>
         </div>
     </div>
+    
+    <div class="grid-x grid-margin">
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-primary">
+        <div class="cell medium-4">
+            <div class="alert">
                 <?php echo @$msg = $_REQUEST['msg'];?>
-            </div>
-            <table class="table table-striped">
+            </div>    
+        </div>
+
+        <table class="hover stack">
                 <thead>
                     <tr>
                         <th>Num</th>
@@ -31,7 +45,7 @@ $data = $lista->Listar();
                         <th>Nombre</th>
                         <th>Notario</th>
                         <th>Serie</th>
-                        <th>Fecha emision</th>
+                        <th>Fecha Atención</th>
                        <th colspan="2">Opciones</th>
                     </tr>
                 </thead>
@@ -67,10 +81,8 @@ $data = $lista->Listar();
                         ?>
                 </tbody> 
             </table>
-        </div>
+        
     </div>
-</div>
+
     
 <?php require 'footer.php'; ?>
-</body>
-</html>

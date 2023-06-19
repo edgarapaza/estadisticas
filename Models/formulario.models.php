@@ -1,18 +1,8 @@
 <?php
-
-require 'Conexion.php';
-
+require_once 'Conexion.php';
 class Producto
 {
     private $conn;
-
-    private $fecharecepcion;
-    private $soli;
-    private $nombre;
-    private $notario;
-    private $tipodoc;
-    private $emision;
-    private $observacion;
 
     function __construct()
     {
@@ -20,12 +10,9 @@ class Producto
         return $this->conn;
     }
       
-    function Registrar($recepcion,$soli,$nombre,$notario,$tipodoc,$emision,$observacion,$estado)
+    function Registrar($fecharecepcion,$numsoli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion,$estado)
     {
-            $sql = "INSERT INTO solicitudes(fecharecepcion,numsoli,nombre,notario,tipodoc,fechaatendida,observacion,estado) VALUES
-             ('$recepcion','$soli','$nombre','$notario','$tipodoc','$emision','$observacion','$estado')";
-            
-            
+            $sql = "INSERT INTO estadistica.solicitudes VALUES (null,'$fecharecepcion','$numsoli','$nombre','$notario','$tipodoc','$fechaatendida','$observacion','$estado',NULL);";
             $result = $this->conn->ConsultaSinRetorno($sql);
             return $result;
             mysqli_close($this->conn);

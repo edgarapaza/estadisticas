@@ -1,10 +1,6 @@
 <?php
-
 require 'Conexion.php';
 
-
-
-    ///////////////registrar
     class Registro
     {
         function __construct()
@@ -13,11 +9,11 @@ require 'Conexion.php';
             $this->conn = $conn->Conectar();
             return $this->conn;
         }
-   
+
         public function Registrar($usuario,$contrasena)
         {
             $sql = ("SELECT $usuario,$contrasena FROM login WHERE
-             $usuario= 'arp' AND $contrasena= 143218");
+                $usuario= 'arp' AND $contrasena= 143218");
             
             
             if(!$this->conn->query($sql))

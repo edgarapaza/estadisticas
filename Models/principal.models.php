@@ -1,18 +1,9 @@
 <?php
 require 'Conexion.php';
 
-class Modificacion
+class Principal
 {
     private $conn;
-
-    private $fecharecepcion;
-    private $nombre;
-    private $apepat;
-    private $apemat;
-    private $notario;
-    private $tipodoc;
-    private $emision;
-    private $observacion;
 
     function __construct()
     {
@@ -32,7 +23,8 @@ class Modificacion
 
     function Listar()
     {
-        $sql = "SELECT * FROM solicitudes";
+        $fecha = date('Y-m-d');
+        $sql = "SELECT * FROM estadistica.solicitudes WHERE fechaatendida LIKE '$fecha'";
         $result = $this->conn->ConsultaConRetorno($sql);
         return $result;
         mysqli_close($this->conn);

@@ -5,18 +5,19 @@ require '../Models/formulario.models.php';
  //instanciar a la clase para Registrar
 $registro = new Producto();
 
-$recepcion 		= $_POST['fecharecepcion'];
-$soli			= $_POST['numsoli'];
-$estado			= $_POST['estado'];
-$nombre 		= $_POST['txtnombre'];
-$notario 		= $_POST['notario'];
-$tipodoc		 = $_POST['tipodoc'];
-$emision 		= $_POST['fechaatendida'];
-$observacion 	= $_POST['observacion'];
+echo $fecharecepcion = $_POST['fecharecepcion'];
+echo $numsoli		= $_POST['numsoli'];
+echo $nombre 		= $_POST['txtnombre'];
+echo $notario 		= $_POST['notario'];
+echo $tipodoc		= $_POST['tipodoc'];
+echo $fechaatendida 	= $_POST['fechaatendida'];
+echo $observacion 	= $_POST['observacion'];
+echo $estado			= $_POST['estado'];
 
 
- //llamar a la funcion Registrar
-$respuesta = $registro->Registrar($recepcion,$soli,$nombre,$notario,$tipodoc,$emision,$observacion,$estado);
+//llamar a la funcion Registrar
+
+$respuesta = $registro->Registrar($fecharecepcion,$numsoli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion,$estado,'');
 
 if($respuesta == true)
 	header("Location: ../View/principal.php?msg=Guardado Correctamente");

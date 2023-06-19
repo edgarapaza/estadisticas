@@ -3,19 +3,56 @@ require 'header.php';
 require "../Models/searchUser.model.php";
 
 @$numsolicitud = $_REQUEST['numerosoli'];
-$search2 = new Search2();
+$search = new Search();
 
 if(is_null($numsolicitud))
 {
-  $datUsuario = $search2->SearchUsuarioRecepcion(1);
+  #echo "Vacio";
+  $dataEscritura = $search->DatosEscritura(3);
+
+  $codusuario  = $dataEscritura['codUsu'];
+  $codTipoSol  = $dataEscritura['codTipSol'];
+  $idSol       = $dataEscritura['idSol'];
+  $fecCreacion = $dataEscritura['fecCreacion'];
+
+  #dataEscritura 
+  $datosUsuario = $search->DatosUsuario($codusuario);
+  $tipoEscritura = $search->DatosTipoEscritura($idSol);
+  $codNotario = $tipoEscritura['codNot'];
+  $datosNotario = $search->DatosNotario($codNotario);
 }else{
   #echo "Lleno" . $numsolicitud;
-  $datUsuario = $search2->SearchUsuarioRecepcion($numsolicitud);
+  $dataEscritura = $search->DatosEscritura($numsolicitud);
+
+  $codusuario  = $dataEscritura['codUsu'];
+  $codTipoSol  = $dataEscritura['codTipSol'];
+  $idSol       = $dataEscritura['idSol'];
+  $fecCreacion = $dataEscritura['fecCreacion'];
+
+  #dataEscritura 
+  $datosUsuario = $search->DatosUsuario($codusuario);
+  $tipoEscritura = $search->DatosTipoEscritura($idSol);
+  $codNotario = $tipoEscritura['codNot'];
+  $datosNotario = $search->DatosNotario($codNotario);
 }
+/*
+#var_dump($datosUsuario);
+#var_dump($tipoEscritura);
+#var_dump($datosNotario);
 
+$datosUsuario['persona'];
+$datosUsuario['numDoc'];
+$datosUsuario['telefono'];
+
+$tipoEscritura['tipEsc'];
+
+$datosNotario['notario'];
+$datosNotario['provincia'];
+
+*/
 $fecha = date('Y-m-d');
-?>
 
+?>
 
 <form>
   <div class="grid-container">
@@ -37,18 +74,29 @@ $fecha = date('Y-m-d');
     </div>
 </form>
 
+<!-- 
+  FORMULARIO DE REGISTRO DE INFORMACION
+-->
 <form action="../Controllers/formulario.controller.php" method="post">
 
     <div class="grid-x grid-margin-x">
         <div class="medium-4 cell">
-          <label>Nombre del usuario:
-                <input class="form-control" type="text" name="txtnombre" value="<?php echo $datUsuario['nom_usuario'];?>" required>
+          <label for="">
+            Numero de solicitud
+            <input type="text" name="numsoli" id="numsoli" value="<?php echo $numsolicitud; ?>">
           </label>
           
+          <label>Nombre del usuario:
+            <input type="text" name="txtnombre" id="txtnombre" value="<?php echo $datosUsuario['persona'];?>">
+          </label>
+          <label for="">
+            <p>-</p>
+          </label>
+          
+          <hr>
             
-            
-            <label>Tipo de Expediente:
-              <select name="tipodoc" required="required" class="form-control" required>
+            <label>Que documento se ha otorgado?
+              <select name="tipodoc" id="tipodoc" class="form-control" required>
                     <option value="Testimonio">Testimonio </option>
                     <option value="Copia Certificada"> Copia Certificada </option>
                     <option value="Copia Certificada por Expediente civil"> Copia Certificada por Expediente civl </option>
@@ -69,33 +117,52 @@ $fecha = date('Y-m-d');
 
         <div class="medium-4 cell">
           <label>DNI:
-                  <input class="form-control" type="text" name="txtdni" value="<?php echo $datUsuario['numDoc'];?>" required>
+            <p><?php echo $datosUsuario['numDoc'];?></p>
+          </label>
+          <label for="">Tipo de Escritura:
+            <p><?php echo $tipoEscritura['tipEsc'];?></p>
+          </label>
+          <label for="">Notario
+            <input type="text" name="notario" id="notario" value="<?php echo $datosNotario['notario'] . " - (".$datosNotario['provincia'].")";?>">
+            <p></p>
           </label>
 
-          
+          <hr>
+
+          <label>Estado
+            <select name="estado" id="estado" class="form-control">
+              <option value="Atendido">Atendido</option>
+              <option value="No Atendido">No Atendido</option>
+              <option value="Pendiente">Devuelto</option>
+            </select>
+          </label>
         </div>
 
         <div class="medium-4 cell">
-            <label>Fecha de Recepcion:fecCreacion
-                <input class="form-control" type="date" name="fecharecepcion" value="<?php echo $fecha; ?>" required>
-            </label>
+          <label for="">Telefono
+            <p><?php echo $datosUsuario['telefono']; ?></p>
+          </label>
+            <label>Fecha de Recepcion
+              <input type="text" name="fecharecepcion" id="fecharecepcion" value="<?php echo $fecCreacion;?>">
+          </label>
 
+          <label for="">
+            <p>-</p>
+          </label>
+          <hr>
+
+          <label>Fecha de Atencion
+              <input class="form-control" type="date" name="fechaatendida" id="fechaatendida" value="<?php echo $fecha; ?>" required>
+            </label>
+          
             
         </div>
 
         
 
         <div class="medium-4 cell">
-          <label>Estado
-            <select name="estado" class="form-control">
-                        <option value="Atendido">Atendido</option>
-                        <option value="No Atendido">No Atendido</option>
-                        <option value="Pendiente">Devuelto</option>
-            </select>
-          </label>
-
-            <label>Fecha de Atencion
-              <input class="form-control" type="date" name="fechaatendida" value="<?php echo $fecha; ?>" required>
+            <label for="">Observacion
+              <textarea name="observacion" id="" cols="30" rows="4"></textarea>
             </label>
 
             <div class="medium-4 cell">
@@ -107,6 +174,7 @@ $fecha = date('Y-m-d');
     </div>
   </div>
 </form>
+
 
 
 <?php require "footer.php"; ?>
