@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estadisticas</title>
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="node_modules/foundation-sites/dist/css/foundation.css">
+    <link rel="stylesheet" href="node_modules/motion-ui/dist/motion-ui.css">
+    <script src="node_modules/jquery/dist/jquery.js"></script>
   </head>
   <body>
 

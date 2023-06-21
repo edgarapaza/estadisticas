@@ -24,7 +24,7 @@ class Conexion
 	}
 
 	
-	function ConsultaConRetorno($sql)
+	function ConsultaCon($sql)
 	{ #SELECT
 		if(!$result = $this->conn->query($sql))
 		{
@@ -37,7 +37,7 @@ class Conexion
 		mysqli_close($this->conn);
 	}
 
-	function ConsultaSinRetorno($sql)
+	function ConsultaSin($sql)
 	{ #INSERT, UPDATE, DELETE
 		if(!$this->conn->query($sql))
 		{

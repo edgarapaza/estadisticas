@@ -1,8 +1,11 @@
         </div>
     </div>
     
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/foundation-sites/dist/js/foundation.js"></script>
+    <script src="node_modules/motion-ui/dist/motion-ui.js"></script>
+    <script src="node_modules/what-input/dist/what-input.js"></script>
+    
     <script>
       $(document).foundation();
     </script>

@@ -64,16 +64,12 @@ $data = $principal->Listar();
                             <td><?php echo $fila['notario']; ?></td>
                             <td><?php echo $fila['tipodoc']; ?></td>
                             <td><?php echo $fila['fechaatendida']; ?></td>
-                                                        <td>
-                                 <a href="edit-formulario.php?idsol=<?php echo $fila['idsol'];?>">Modificar</a>
-                            </td>
-
                             <td>
-                                  <a href="eliminar-formulario.php?idsol=<?php echo $fila['idsol'];?>">Eliminar</a>
+                                <a href="edit-formulario.php?idsol=<?php echo $fila['idsol'];?>">Modificar</a>
                             </td>
-
-
-                    
+                            <td>
+                                <a href="eliminar-formulario.php?idsol=<?php echo $fila['idsol'];?>">Eliminar</a>
+                            </td>
                         </tr>
                         <?php 
                         $i++;

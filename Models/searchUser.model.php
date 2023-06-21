@@ -1,5 +1,5 @@
 <?php
-require 'Conexion2.php';
+require_once 'Conexion.php';
 
 class Search
 {    
@@ -7,7 +7,7 @@ class Search
 
     function __construct()
     {
-        $this->conn = new Conexion2();
+        $this->conn = new Conexion();
         return $this->conn;
     }
         
@@ -28,6 +28,20 @@ class Search
     function DatosTipoEscritura($idSol)
     {
         $sql = "SELECT idSol, tipEsc,codNot FROM recepcion.escpublicas WHERE idSol = ". $idSol;
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
+    }
+
+    function DatosPartidas($idSol)
+    {
+        $sql = "SELECT tipPar, nombre1, nombre2, muni FROM recepcion.partidas WHERE idSol = ".$idSol;
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
+    }
+
+    function DatosExpediente($idSol)
+    {
+        $sql = "SELECT tipExpJud, materia, demandante, demandado FROM recepcion.expedientes WHERE idSol =". $idSol;
         $data = $this->conn->ConsultaArray($sql);
         return $data;
     }
