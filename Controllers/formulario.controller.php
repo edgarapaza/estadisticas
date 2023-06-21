@@ -1,39 +1,27 @@
 <?php
-
 require '../Models/formulario.models.php';
 
  //instanciar a la clase para Registrar
-$registro = new Producto();
+$formulario = new Formulario();
 
-echo $fecharecepcion = $_POST['fecharecepcion'];
-echo $numsoli		= $_POST['numsoli'];
-echo $nombre 		= $_POST['txtnombre'];
-echo $notario 		= $_POST['notario'];
-echo $tipodoc		= $_POST['tipodoc'];
-echo $fechaatendida 	= $_POST['fechaatendida'];
-echo $observacion 	= $_POST['observacion'];
-echo $estado			= $_POST['estado'];
+$fecharecepcion = $_POST['fecharecepcion'];
+$numsoli		= $_POST['numsoli'];
+$nombre 		= $_POST['txtnombre'];
+$notario 		= $_POST['notario'];
+$tipodoc		= $_POST['tipodoc'];
+$fechaatendida  = $_POST['fechaatendida'];
+$observacion 	= $_POST['observacion'];
+$estado		    = $_POST['estado'];
 
 
 //llamar a la funcion Registrar
 
-$respuesta = $registro->Registrar($fecharecepcion,$numsoli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion,$estado,'');
-
-if($respuesta == true)
+$res = $formulario->Duplicado($numsoli, $fecharecepcion);
+if($res['cantidad']>0){
+	echo "DUPLICADO";
+	header("Location: ../View/error.php");
+}else{
+	echo "No registrado";
+	$formulario->Registrar($fecharecepcion,$numsoli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion,$estado);
 	header("Location: ../View/principal.php?msg=Guardado Correctamente");
-else
-    header("Location: ../View/error.php");
-
-
-
-
-//Instancias a la clase para Eliminacion
-//$eliminacion = new Eliminacion();
-
-//Llamar a la funcion Eliminar
-
-//$respuesta = $eliminacion->Eliminar($id,$producto,$marca,$costo,$precio,$cantidad,$imagen);
-//if($respuesta == true)
-//	header("Location: ../View/principal.php");
-//else
-	//header("Location: ../View/error.php");
+}

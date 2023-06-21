@@ -15,28 +15,21 @@ class Principal
     {
         $sql = "UPDATE solicitudes SET fecharecepcion = '$recepcion', nombre = '$nombre', apepat='$apepat', apemat='$apemat', notario = '$notario', tipodoc = '$tipodoc', fechaatendida = '$emision',observacion='$observacion' WHERE nombre='$nombre';";
         
-        $res = $this->conn->ConsultaSinRetorno($sql);
-        return $res;
-        mysqli_close($this->conn);
-        
+        $this->conn->ConsultaSin($sql);
     }
 
     function Listar()
     {
         $fecha = date('Y-m-d');
         $sql = "SELECT * FROM estadistica.solicitudes WHERE fechaatendida LIKE '$fecha'";
-        $result = $this->conn->ConsultaConRetorno($sql);
+        $result = $this->conn->ConsultaCon($sql);
         return $result;
-        mysqli_close($this->conn);
     }
 
     function Eliminar  ($recepcion,$nombre,$apepat,$apemat,$notario,$tipodoc,$emision,$observacion)
     {
         $sql = "DELETE FROM solicitudes WHERE nombre ='$nombre'";
 
-        $res = $this->conn->ConsultaSinRetorno($sql);
-        return $res;
-        mysqli_close($this->conn);
-        
+        $this->conn->ConsultaSin($sql);
     }
 }

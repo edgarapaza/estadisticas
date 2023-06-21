@@ -1,6 +1,6 @@
 <?php
 require_once 'Conexion.php';
-class Producto
+class Formulario
 {
     private $conn;
 
@@ -12,28 +12,27 @@ class Producto
       
     function Registrar($fecharecepcion,$numsoli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion,$estado)
     {
-            $sql = "INSERT INTO estadistica.solicitudes VALUES (null,'$fecharecepcion','$numsoli','$nombre','$notario','$tipodoc','$fechaatendida','$observacion','$estado',NULL);";
-            $result = $this->conn->ConsultaSinRetorno($sql);
-            return $result;
-            mysqli_close($this->conn);
+            $sql = "INSERT INTO estadistica.solicitudes VALUES (NULL,'$fecharecepcion','$numsoli','$nombre','$notario','$tipodoc','$fechaatendida','$observacion','$estado','$fechaatendida');";
+            $this->conn->ConsultaSin($sql);
+    }
+
+    function Duplicado($idsol)
+    {
+        $sql = "SELECT count(idsol) as cantidad FROM estadistica.solicitudes WHERE fecharecepcion LIKE '2021-06-28%' AND numsoli =".$idsol;
+        $res = $this->conn->ConsultaArray($sql);
+        return $res;
     }
 
     function Edit($idsol, $fecharecepcion,$soli,$nombre,$notario,$tipodoc,$fechaatendida,$observacion,$estado)
     {
             $sql = "UPDATE solicitudes SET fecharecepcion = '$fecharecepcion', numsoli = '$soli', nombre = '$nombre', notario = '$notario', tipodoc = '$tipodoc', fechaatendida = '$fechaatendida', observacion = '$observacion', estado='$estado' WHERE idsol = ". $idsol;
-            
-            $result = $this->conn->ConsultaSinRetorno($sql);
-            return $result;
-            mysqli_close($this->conn);       
+            $this->conn->ConsultaSin($sql);
     }
 
     function Eliminar($idsol)
     {
         $sql = "DELETE FROM solicitudes WHERE idsol ='$idsol'";
-
-        $resultado = $this->conn->ConsultaSinRetorno($sql);
-        return $resultado;
-        mysqli_close($this->conn);
+        $this->conn->ConsultaSin($sql);
         
     }
 
